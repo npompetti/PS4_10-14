@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
 
 
 public class Future_Value_Box extends Calc {
@@ -68,31 +70,47 @@ public class Future_Value_Box extends Calc {
 		frame.getContentPane().setLayout(null);
 		
 		investment_field = new JTextField();
+		investment_field.setBackground(Color.ORANGE);
 		investment_field.setBounds(234, 45, 134, 28);
 		frame.getContentPane().add(investment_field);
 		investment_field.setColumns(10);
 		
 		interest_field = new JTextField();
+		interest_field.setBackground(Color.ORANGE);
 		interest_field.setBounds(234, 85, 134, 28);
 		frame.getContentPane().add(interest_field);
 		interest_field.setColumns(10);
 		
 		years_field = new JTextField();
+		years_field.setBackground(Color.ORANGE);
 		years_field.setBounds(234, 125, 134, 28);
 		frame.getContentPane().add(years_field);
 		years_field.setColumns(10);
 		
 		answer_field = new JFormattedTextField();
+		answer_field.setBackground(Color.ORANGE);
 		answer_field.setBounds(234, 165, 134, 28);
 		frame.getContentPane().add(answer_field);
 		answer_field.setColumns(10);
 		
 		JButton btnCalculate = new JButton("Calculate");
+		btnCalculate.setFont(new Font("Lucida Blackletter", Font.PLAIN, 13));
 		btnCalculate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(investment == 0){
+					answer_field.setText("Please reenter data");
+				}
+				else if(yrs == 0){
+					answer_field.setText("Please reenter data");
+				}
+				else if(interest == 0){
+					answer_field.setText("Please reenter data");
+				}
 				investment = Double.parseDouble(investment_field.getText());
 				yrs = Integer.parseInt(years_field.getText());
 				interest = Double.parseDouble(interest_field.getText());
+				
+				
 				fv = calc_fv(investment,yrs,interest);
 				
 				answer_field.setText(String.valueOf(fv));
